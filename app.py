@@ -143,21 +143,21 @@ def run_analysis(model, modis_path, s2_path=None):
         with col1:
             st.subheader("Input MODIS (Low Res)")
             # Display False Color Composite or just Red channel? 
-            # Let's show Red band for simplicity or RGB if we had Blue. We only have Red/NIR.
             # We can visualize Red as Gray.
             fig, ax = plt.subplots()
             ax.imshow(modis_input[0], cmap='gray')
             ax.set_title("MODIS Red Band (32x32)")
             ax.axis('off')
             st.pyplot(fig)
+            st.metric("Mean Pixel Value", f"{modis_input[0].mean():.4f}")
             
         with col2:
             st.subheader("Predicted Sentinel-2 (High Res)")
             fig, ax = plt.subplots()
-            ax.imshow(pred_sentinel[0], cmap='gray')
             ax.set_title("Predicted Red Band (128x128)")
             ax.axis('off')
             st.pyplot(fig)
+            st.metric("Mean Pixel Value", f"{pred_sentinel[0].mean():.4f}")
             
         st.divider()
         
@@ -176,21 +176,20 @@ def run_analysis(model, modis_path, s2_path=None):
             with col3:
                  st.subheader("Ground Truth Sentinel-2")
                  fig, ax = plt.subplots()
-                 ax.imshow(s2_disp, cmap='gray')
                  ax.set_title("Actual Red Band")
                  ax.axis('off')
                  st.pyplot(fig)
+                 st.metric("Mean Pixel Value", f"{s2_disp.mean():.4f}")
             
             with col4:
                  # Difference/Error map
                  diff = np.abs(s2_disp - normalize(pred_sentinel[0]))
                  st.subheader("Difference Map")
                  fig, ax = plt.subplots()
-                 im = ax.imshow(diff, cmap='hot')
-                 plt.colorbar(im, ax=ax)
                  ax.set_title("|Actual - Predicted|")
                  ax.axis('off')
                  st.pyplot(fig)
+                 st.metric("Mean Absolute Error", f"{diff.mean():.4f}")
 
         st.divider()
         st.subheader("NDVI Analysis")
@@ -204,19 +203,19 @@ def run_analysis(model, modis_path, s2_path=None):
             st.image(normalize(modis_ndvi), clamp=True, caption="MODIS NDVI", width=300) 
             # imshow might be better for heatmap
             fig, ax = plt.subplots()
-            im = ax.imshow(modis_ndvi, cmap='RdYlGn', vmin=-1, vmax=1)
             plt.colorbar(im, ax=ax)
             ax.set_title("MODIS NDVI")
             ax.axis('off')
             st.pyplot(fig)
+            st.metric("Mean NDVI", f"{modis_ndvi.mean():.4f}")
 
         with c2:
             fig, ax = plt.subplots()
-            im = ax.imshow(pred_ndvi, cmap='RdYlGn', vmin=-1, vmax=1)
             plt.colorbar(im, ax=ax)
             ax.set_title("Predicted S2 NDVI")
             ax.axis('off')
             st.pyplot(fig)
+            st.metric("Mean NDVI", f"{pred_ndvi.mean():.4f}")
 
 if __name__ == "__main__":
     main()
