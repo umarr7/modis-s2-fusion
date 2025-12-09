@@ -203,6 +203,7 @@ def run_analysis(model, modis_path, s2_path=None):
             st.image(normalize(modis_ndvi), clamp=True, caption="MODIS NDVI", width=300) 
             # imshow might be better for heatmap
             fig, ax = plt.subplots()
+            im = ax.imshow(modis_ndvi, cmap='RdYlGn', vmin=-1, vmax=1)
             plt.colorbar(im, ax=ax)
             ax.set_title("MODIS NDVI")
             ax.axis('off')
@@ -211,6 +212,7 @@ def run_analysis(model, modis_path, s2_path=None):
 
         with c2:
             fig, ax = plt.subplots()
+            im = ax.imshow(pred_ndvi, cmap='RdYlGn', vmin=-1, vmax=1)
             plt.colorbar(im, ax=ax)
             ax.set_title("Predicted S2 NDVI")
             ax.axis('off')
