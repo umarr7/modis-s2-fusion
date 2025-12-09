@@ -15,9 +15,11 @@ st.set_page_config(
 )
 
 # Constants
-MODEL_PATH = "fusion_model.pth"
-MODIS_DIR = "modis and s2 datasets/modis/"
-S2_DIR = "modis and s2 datasets/s2/"
+# Constants
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "fusion_model.pth")
+MODIS_DIR = os.path.join(BASE_DIR, "modis and s2 datasets", "modis")
+S2_DIR = os.path.join(BASE_DIR, "modis and s2 datasets", "s2")
 
 @st.cache_resource
 def load_model():
@@ -34,7 +36,10 @@ def load_model():
             st.error(f"Error loading model: {e}")
             return None
     else:
-        st.warning(f"Model file '{MODEL_PATH}' not found. Please train the model first.")
+    else:
+        st.warning(f"Model file '{MODEL_PATH}' not found.")
+        st.info(f"Current Directory: {os.getcwd()}")
+        st.info(f"Files in {BASE_DIR}: {os.listdir(BASE_DIR)}")
         return None
 
 def normalize(arr):
