@@ -138,17 +138,14 @@ def run_analysis(model, modis_path, s2_path=None):
         # modis_input is [2, 32, 32] (Red, NIR)
         # pred_sentinel is [2, 128, 128] (Red, NIR)
         
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            st.subheader("Input MODIS (Low Res)")
-            # Display False Color Composite or just Red channel? 
-            # We can visualize Red as Gray.
-            fig, ax = plt.subplots()
-            ax.imshow(modis_input[0], cmap='gray')
-            ax.set_title("MODIS Red Band (32x32)")
-            ax.axis('off')
-            st.pyplot(fig)
+        # col1, col2 = st.columns(2)
+        # with col1:
+        #     st.subheader("Input MODIS (Low Res)")
+        #     # fig, ax = plt.subplots()
+        #     # ax.imshow(modis_input[0], cmap='gray')
+        #     # ax.set_title("MODIS Red Band (32x32)")
+        #     # ax.axis('off')
+        #     # st.pyplot(fig)
             
         with col2:
             st.subheader("Predicted Sentinel-2 (High Res)")
@@ -198,7 +195,7 @@ def run_analysis(model, modis_path, s2_path=None):
         
         c1, c2 = st.columns(2)
         with c1:
-            st.image(normalize(modis_ndvi), clamp=True, caption="MODIS NDVI", width=300) 
+            # st.image(normalize(modis_ndvi), clamp=True, caption="MODIS NDVI", width=300) 
             # imshow might be better for heatmap
             fig, ax = plt.subplots()
             im = ax.imshow(modis_ndvi, cmap='RdYlGn', vmin=-1, vmax=1)
