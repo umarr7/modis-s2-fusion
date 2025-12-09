@@ -1,0 +1,7 @@
+streamlit
+torch
+torchvision
+rasterio
+opencv-python-headless
+numpy
+matplotlib

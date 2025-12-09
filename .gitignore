@@ -1,0 +1,5 @@
+__pycache__/
+*.pth
+venv/
+.DS_Store
+.ipynb_checkpoints/
