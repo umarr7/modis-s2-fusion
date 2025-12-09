@@ -147,12 +147,12 @@ def run_analysis(model, modis_path, s2_path=None):
         #     # ax.axis('off')
         #     # st.pyplot(fig)
             
-        with col2:
-            st.subheader("Predicted Sentinel-2 (High Res)")
-            fig, ax = plt.subplots()
-            ax.set_title("Predicted Red Band (128x128)")
-            ax.axis('off')
-            st.pyplot(fig)
+        # with col2:
+        #     st.subheader("Predicted Sentinel-2 (High Res)")
+        #     fig, ax = plt.subplots()
+        #     ax.set_title("Predicted Red Band (128x128)")
+        #     ax.axis('off')
+        #     st.pyplot(fig)
             
         st.divider()
         
@@ -167,24 +167,24 @@ def run_analysis(model, modis_path, s2_path=None):
             
             s2_disp = normalize(s2_b4)
             
-            col3, col4 = st.columns(2)
-            with col3:
-                 st.subheader("Ground Truth Sentinel-2")
-                 fig, ax = plt.subplots()
-                 ax.set_title("Actual Red Band")
-                 ax.axis('off')
-                 st.pyplot(fig)
+            # col3, col4 = st.columns(2)
+            # with col3:
+            #      st.subheader("Ground Truth Sentinel-2")
+            #      fig, ax = plt.subplots()
+            #      ax.set_title("Actual Red Band")
+            #      ax.axis('off')
+            #      st.pyplot(fig)
             
-            with col4:
-                 # Difference/Error map
-                 diff = np.abs(s2_disp - normalize(pred_sentinel[0]))
-                 st.subheader("Difference Map")
-                 fig, ax = plt.subplots()
-                 im = ax.imshow(diff, cmap='hot')
-                 plt.colorbar(im, ax=ax)
-                 ax.set_title("|Actual - Predicted|")
-                 ax.axis('off')
-                 st.pyplot(fig)
+            # with col4:
+            #      # Difference/Error map
+            #      diff = np.abs(s2_disp - normalize(pred_sentinel[0]))
+            #      st.subheader("Difference Map")
+            #      fig, ax = plt.subplots()
+            #      im = ax.imshow(diff, cmap='hot')
+            #      plt.colorbar(im, ax=ax)
+            #      ax.set_title("|Actual - Predicted|")
+            #      ax.axis('off')
+            #      st.pyplot(fig)
 
         st.divider()
         st.subheader("NDVI Analysis")
