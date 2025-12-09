@@ -186,6 +186,8 @@ def run_analysis(model, modis_path, s2_path=None):
                  diff = np.abs(s2_disp - normalize(pred_sentinel[0]))
                  st.subheader("Difference Map")
                  fig, ax = plt.subplots()
+                 im = ax.imshow(diff, cmap='hot')
+                 plt.colorbar(im, ax=ax)
                  ax.set_title("|Actual - Predicted|")
                  ax.axis('off')
                  st.pyplot(fig)
