@@ -149,7 +149,6 @@ def run_analysis(model, modis_path, s2_path=None):
             ax.set_title("MODIS Red Band (32x32)")
             ax.axis('off')
             st.pyplot(fig)
-            st.metric("Mean Pixel Value", f"{modis_input[0].mean():.4f}")
             
         with col2:
             st.subheader("Predicted Sentinel-2 (High Res)")
@@ -157,7 +156,6 @@ def run_analysis(model, modis_path, s2_path=None):
             ax.set_title("Predicted Red Band (128x128)")
             ax.axis('off')
             st.pyplot(fig)
-            st.metric("Mean Pixel Value", f"{pred_sentinel[0].mean():.4f}")
             
         st.divider()
         
@@ -179,7 +177,6 @@ def run_analysis(model, modis_path, s2_path=None):
                  ax.set_title("Actual Red Band")
                  ax.axis('off')
                  st.pyplot(fig)
-                 st.metric("Mean Pixel Value", f"{s2_disp.mean():.4f}")
             
             with col4:
                  # Difference/Error map
@@ -191,7 +188,6 @@ def run_analysis(model, modis_path, s2_path=None):
                  ax.set_title("|Actual - Predicted|")
                  ax.axis('off')
                  st.pyplot(fig)
-                 st.metric("Mean Absolute Error", f"{diff.mean():.4f}")
 
         st.divider()
         st.subheader("NDVI Analysis")
