@@ -36,7 +36,7 @@ def load_model():
             st.error(f"Error loading model: {e}")
             return None
     else:
-    else:
+
         st.warning(f"Model file '{MODEL_PATH}' not found.")
         st.info(f"Current Directory: {os.getcwd()}")
         st.info(f"Files in {BASE_DIR}: {os.listdir(BASE_DIR)}")
